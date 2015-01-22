@@ -1,4 +1,5 @@
 /*global ig*/
+/* test */
 ig.module(
 	'plugins.array.utilities'
 ).requires().defines(function () {
