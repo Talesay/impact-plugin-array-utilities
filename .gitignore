@@ -1,11 +1,13 @@
-# Build and Release Folders
-bin/
-bin-debug/
-bin-release/
+# GitEye project file
+/.project
 
-# Other files and folders
-.settings/
+# Os & Process detritus
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.dropbox
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Brackets settings
+.brackets.json
