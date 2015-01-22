@@ -127,8 +127,6 @@ ig.module(
 			enumerable: false
 		});
 	}
-    
-    //Testing
 	for (methodName in ArrayUtils) {
 		if (ArrayUtils.hasOwnProperty(methodName)) {
 			installFunction(methodName, ArrayUtils[methodName]);
