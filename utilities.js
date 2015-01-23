@@ -3,7 +3,7 @@ ig.module(
 	'plugins.array.utilities'
 ).requires().defines(function () {
 	'use strict';
-	var ArrayUtils = {
+	var ArrayUtilities = {
 			copy: function () {
 				return this.slice(0);
 			},
@@ -127,9 +127,9 @@ ig.module(
 			enumerable: false
 		});
 	}
-	for (methodName in ArrayUtils) {
-		if (ArrayUtils.hasOwnProperty(methodName)) {
-			installFunction(methodName, ArrayUtils[methodName]);
+	for (methodName in ArrayUtilities) {
+		if (ArrayUtilities.hasOwnProperty(methodName)) {
+			installFunction(methodName, ArrayUtilities[methodName]);
 		}
 	}
 });
