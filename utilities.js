@@ -120,7 +120,7 @@ ig.module(
 
 	function installFunction(name, fn) {
 		if (Array.prototype[name]) {
-			throw ("Array method " + name + "() already defined elsewhere.");
+			throw ("Array Utilities method " + name + "() already defined elsewhere.");
 		}
 		Object.defineProperty(Array.prototype, name, {
 			value: fn,
