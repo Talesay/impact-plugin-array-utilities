@@ -10,6 +10,16 @@ ig.module(
 			contains: function (element) {
 				return this.indexOf(element) >= 0;
 			},
+			count: function (element) {
+				var count = 0,
+					i = 0;
+				for (i; i < this.length; i += 1) {
+					if (this[i] === element) {
+						count += 1;
+					}
+				}
+				return count;
+			},
 			remove: function (from, to) {
 				var copy = [],
 					i = 0,
