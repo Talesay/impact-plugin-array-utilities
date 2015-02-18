@@ -1,15 +1,53 @@
+/**
+# Impact JS Array Utilities Plugin
+
+This plugins extends the native Array object with non-enumerable utility methods
+
+__Installation__
+
+As a submodule, from the git command line:
+
+```
+git submodule add https://github.com/Talesay/impact-plugin-array-utilities.git lib/plugins/array
+``` 
+
+Then require this plugin:
+
+```
+'plugins.array.utilities'
+``` 
+
+__JSLint Flags__
+*/
 /*global ig*/
 ig.module(
 	'plugins.array.utilities'
 ).requires().defines(function () {
 	'use strict';
 	var ArrayUtilities = {
+			/**
+			 *Returns a copy of the array
+			 *@method Array.copy
+			 *@return {Array}
+			 */
 			copy: function () {
 				return this.slice(0);
 			},
+			/**
+			 *Checks if the array contains this __element__, then returns true or false
+			 *@method Array.contains
+			 *@param {Object} element
+			 *@return {Boolean}
+			 */
 			contains: function (element) {
 				return this.indexOf(element) >= 0;
 			},
+			/**
+			 *Counts the amount of times an __element__ can be found within the array, then returns a number
+			 *@method Array.count
+			 *@param {Object} element
+			 *@return {Number}
+			 */
 			count: function (element) {
 				var count = 0,
 					i = 0;
@@ -20,20 +58,12 @@ ig.module(
 				}
 				return count;
 			},
-			remove: function (from, to) {
-				var copy = [],
-					i = 0,
-					j = 0;
-				for (i = 0; i < from; i += 1) {
-					copy[i] = this[i];
-				}
-				j = i;
-				for (i = to + 1; i < this.length; i += 1) {
-					copy[j] = this[i];
-					j += 1;
-				}
-				return copy;
-			},
+			/**
+			 *Returns a copy of the array, rotated __n__ times clockwise
+			 *@method Array.rotate
+			 *@param {Number} n
+			 *@return {Array}
+			 */
 			rotate: function (n) {
 				if (!n) {
 					return this.slice(0);
@@ -53,36 +83,11 @@ ig.module(
 				}
 				return copy;
 			},
-			copyFirst: function (n) {
-				var copy = this.slice(0);
-				if (typeof n === 'undefined') {
-					copy.length = 1;
-					return copy;
-				} else if (n >= copy.length) {
-					return copy;
-				} else {
-					copy.length = n;
-					return copy;
-				}
-			},
-			getFirst: function () {
-				return this[0];
-			},
-			copyLast: function (n) {
-				var copy = this.slice(0);
-				if (typeof n === 'undefined') {
-					copy.remove(0, copy.length - 2);
-					return copy;
-				} else if (n >= copy.length) {
-					return copy;
-				} else {
-					copy.remove(0, copy.length - n - 1);
-					return copy;
-				}
-			},
-			getLast: function () {
-				return this[this.length - 1];
-			},
+			/**
+			 *Returns a  shuffled copy of the array
+			 *@method Array.shuffle
+			 *@return {Array}
+			 */
 			shuffle: function () {
 				var copy = this.splice(0),
 					m = copy.length,
@@ -97,17 +102,35 @@ ig.module(
 				}
 				return copy;
 			},
-			difference: function (array) {
+			/**
+			 *Returns a new array, that contains the difference between this array and a __secondArray__
+			 *@method Array.difference
+			 *@param {Array} secondArray
+			 *@return {Array}
+			 */
+			difference: function (secondArray) {
 				return this.filter(function (i) {
-					return (array.indexOf(i) < 0);
+					return (secondArray.indexOf(i) < 0);
 				});
 			},
-			intersection: function (array) {
+			/**
+			 *Returns a new array, that contains the intersection between this array and a __secondArray__
+			 *@method Array.intersection
+			 *@param {Array} secondArray
+			 *@return {Array}
+			 */
+			intersection: function (secondArray) {
 				return this.filter(function (i) {
-					return (array.indexOf(i) !== -1);
+					return (secondArray.indexOf(i) !== -1);
 				});
 			},
-			union: function (array) {
+			/**
+			 *Returns a new array, that contains the union between this array and a __secondArray__
+			 *@method Array.union
+			 *@param {Array} secondArray
+			 *@return {Array}
+			 */
+			union: function (secondArray) {
 				var obj = {},
 					result = [],
 					i,
@@ -115,8 +138,8 @@ ig.module(
 				for (i = this.length - 1; i >= 0; i = i - 1) {
 					obj[this[i]] = this[i];
 				}
-				for (i = array.length - 1; i >= 0; i = i - 1) {
-					obj[array[i]] = array[i];
+				for (i = secondArray.length - 1; i >= 0; i = i - 1) {
+					obj[secondArray[i]] = secondArray[i];
 				}
 				for (key in obj) {
 					if (obj.hasOwnProperty(key)) {
@@ -143,24 +166,25 @@ ig.module(
 		}
 	}
 });
-//	The MIT License (MIT)
-//
-//	Copyright (c) 2015 Talesay
-//
-//	Permission is hereby granted, free of charge, to any person obtaining a copy
-//	of this software and associated documentation files (the "Software"), to deal
-//	in the Software without restriction, including without limitation the rights
-//	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//	copies of the Software, and to permit persons to whom the Software is
-//	furnished to do so, subject to the following conditions:
-//
-//	The above copyright notice and this permission notice shall be included in all
-//	copies or substantial portions of the Software.
-//
-//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//	SOFTWARE.
+/**
+ * # The MIT License (MIT)
+ * ## Copyright (c) 2015 Talesay
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
