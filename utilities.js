@@ -11,7 +11,7 @@ As a submodule, from the git command line:
 git submodule add https://github.com/Talesay/impact-plugin-array-utilities.git lib/plugins/array
 ``` 
 
-Then require this plugin:
+Then require this module:
 
 ```
 'plugins.array.utilities'
